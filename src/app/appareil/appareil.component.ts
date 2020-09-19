@@ -9,9 +9,20 @@ export class AppareilComponent {
 @Input('appareilName') appareilName: string;
 @Input('appareilStatus') appareilStatus :string;
 
+
   constructor(){ }
 
   getStatus(){
     return this.appareilStatus;
+  }
+  getColor(){
+    if (this.appareilStatus === 'allumé')
+      {
+        return 'green';
+      }
+    else if (this.appareilStatus === 'éteint')
+      {
+        return 'red';
+      }
   }
 }
