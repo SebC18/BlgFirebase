@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'appareil',
@@ -6,12 +6,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./appareil.component.scss']
 })
 export class AppareilComponent {
-  AppareilName: string = "Machine à laver";
-  AppareilStatus: string = "éteint";
+@Input('appareilName') appareilName: string;
+@Input('appareilStatus') appareilStatus :string;
 
   constructor(){ }
 
   getStatus(){
-    return this.AppareilStatus;
+    return this.appareilStatus;
   }
 }
