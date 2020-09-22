@@ -11,9 +11,16 @@ export class AppareilComponent {
 @Input('appareilStatus') appareilStatus :string;
 @Input('indexOfAppareil') indexOfAppareil:number;
 
-
   constructor(private appareilService: AppareilService){ }
 
+  onSwitchOn(){
+    this.appareilService.switchOnOne(this.indexOfAppareil);
+  }
+
+  onSwitchOff(){
+    this.appareilService.switchOffOne(this.indexOfAppareil);
+  }
+  
   getStatus(){
     return this.appareilStatus;
   }
@@ -26,13 +33,5 @@ export class AppareilComponent {
       {
         return 'red';
       }
-  }
-
-  onSwitchOn(){
-    this.appareilService.switchOnOne(this.indexOfAppareil);
-  }
-
-  onSwitchOff(){
-    this.appareilService.switchOffOne(this.indexOfAppareil);
   }
 }
