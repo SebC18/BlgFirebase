@@ -11,8 +11,11 @@
         </appareil>
       </ul>
       <button class="btn btn-success" 
-              [disabled]="!isAuth" 
-              (click)="onAllumer()">Tout Allumer</button>
+              (click)="onAllumer()">Tout Allumer
+      </button>
+      <button class="btn btn-danger"
+              (click)="onEteindre()">Tout Eteindre
+      </button>
  </div>
 </div>
 
