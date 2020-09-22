@@ -13,6 +13,13 @@ export class AppareilService{
         status: "allumé"
       },
     ]
+    switchOnOne(index: number){
+        this.appareils[index].status = "allumé";
+    }
+
+    switchOffOne(index: number){
+        this.appareils[index].status = "éteint";
+    }
 
     switchOnAll(){
         for(let appareil of this.appareils){

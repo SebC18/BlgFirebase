@@ -5,7 +5,8 @@
       <p>Mis à jour le : {{ lastUpdate | async | date : 'medium' | uppercase }}</p>
 
       <ul class="list-group">
-        <appareil *ngFor="let appareil of appareils" 
+        <appareil *ngFor="let appareil of appareils; let i = index" 
+                  [indexOfAppareil]="i"          
                   [appareilName]="appareil.name" 
                   [appareilStatus]="appareil.status">
         </appareil>
