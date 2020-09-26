@@ -7,7 +7,7 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./edit-appareil.component.scss']
 })
 export class EditAppareilComponent {
-
+defaultStatus : string = 'éteint'; 
   constructor() { }
 
   onSubmit(form: NgForm){
