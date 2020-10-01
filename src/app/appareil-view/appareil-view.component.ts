@@ -48,4 +48,11 @@ appareilSubscription: Subscription;
   onEteindre(){
     this.appareilService.switchOffAll();
   }
+
+  onSave(){
+    this.appareilService.saveAppareilToServer();
+  }
+  onFetch(){
+    this.appareilService.getAppareilFromServer();
+  }
 }

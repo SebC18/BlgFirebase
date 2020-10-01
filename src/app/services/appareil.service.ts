@@ -1,26 +1,15 @@
 import { Subject } from 'rxjs/Subject';
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { error } from '@angular/compiler/src/util';
 
+@Injectable()
 export class AppareilService{
+    constructor(private httpClient : HttpClient){}
     
     appareilSubject = new Subject<any[]>();
 
-    private appareils = [
-      {
-        id: 1,
-        name: "Machine à laver",
-        status: "éteint"
-      },
-      {
-        id: 2,
-        name: "Asus VivoBook",
-        status: "allumé"
-      },
-      {
-        id: 3,
-        name: "Xbox Serie X",
-        status: "allumé"
-      },
-    ]
+    private appareils = []
 
     emitAppareilSubject(){
         this.appareilSubject.next(this.appareils.slice());
@@ -70,5 +59,32 @@ export class AppareilService{
         appareilObject.id = this.appareils[(this.appareils.length -1)].id + 1; 
         this.appareils.push(appareilObject);
         this.emitAppareilSubject();
+    }
+
+    saveAppareilToServer(){
+        this.httpClient
+        .put('https://http-client-demo-7eb98.firebaseio.com/appareils.json', this.appareils)
+        .subscribe( 
+            () => {
+                console.log('Tout a bien été enregistré !');
+            },
+            (error)=>{
+                console.log('Erreur de sauvegarde'+console.error());
+            }
+        );
+    }
+
+    getAppareilFromServer(){
+        this.httpClient
+        .get<any[]>('https://http-client-demo-7eb98.firebaseio.com/appareils.json')
+        .subscribe(
+            (response) =>{
+                this.appareils = response;
+                this.emitAppareilSubject();
+            },
+            (error)=>{
+                console.log('Erreur de chargement' + error);
+            }
+        );
     }
 }
